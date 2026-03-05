@@ -10,7 +10,10 @@ class ProductosRepository{
 
     async getById(id){
         const result = await pool.query(
-            'select id, nombre, '
-        )
+            'select id, nombre, fecha_entrega from where id = $1;',[id]
+        );
+        return result.rows[0];
     }
 }
+
+module.exports = { ProductosRepository }
